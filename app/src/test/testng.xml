@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite1" verbose="1">
+<suite name="Suite1" verbose="1" thread-count="2" parallel="methods">
     <test name="first tests">
         <classes>
             <class name="mypackage.tests.component_tests.UserTests"/>
