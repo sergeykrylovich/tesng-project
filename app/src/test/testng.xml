@@ -2,7 +2,7 @@
 <suite name="Suite1" verbose="1">
     <test name="first tests">
         <classes>
-            <class name="mypackage.AppTest"/>
+            <class name="mypackage.tests.component_tests.UserTests"/>
         </classes>
     </test>
 </suite>
