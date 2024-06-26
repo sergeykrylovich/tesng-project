@@ -1,6 +1,8 @@
 package mypackage.data_providers;
 
 import mypackage.dto.AuthDTO;
+import mypackage.dto.CategoryDTO;
+import mypackage.dto.ProductDTO;
 import mypackage.dto.UserDTO;
 import org.testng.annotations.DataProvider;
 
@@ -14,8 +16,12 @@ public class DataForTests {
                 .password("4444")
                 .avatar("https://api.lorem.space/image/face?w=640&h=480&r=867")
                 .build();
+
         AuthDTO authDTO = new AuthDTO(user.getPassword(), user.getEmail());
 
-        return new Object [][] {{user, authDTO}};
+        CategoryDTO category = new CategoryDTO("https://api.lorem.space/image/face?w=640&h=480&r=867", "Video cards");
+
+
+        return new Object [][] {{user, authDTO, category}};
     }
 }

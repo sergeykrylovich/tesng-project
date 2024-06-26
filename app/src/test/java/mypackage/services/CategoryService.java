@@ -13,12 +13,23 @@ public class CategoryService {
     public static final String CATEGORY_ENDPOINT = "/categories";
 
 
-    @Step("Создание категории")
-    public ValidatableResponse createCategory (CategoryDTO category) {
+    @Step("Создание категории через эндпоинт")
+    public ValidatableResponse createCategory (CategoryDTO category, String accessToken) {
         return given().spec(initPostRequest(CATEGORY_ENDPOINT))
+                .auth().oauth2(accessToken)
                 .when()
                 .body(category)
                 .post("/")
+                .then();
+    }
+
+    @Step("Удалить категоррию по его id через эндпоинт")
+    public ValidatableResponse deleteCategory(Integer categoryId, String accessToken) {
+        return given().spec(initPostRequest(CATEGORY_ENDPOINT))
+                .auth().oauth2(accessToken)
+                .pathParam("categoryId", categoryId)
+                .when()
+                .delete("/{categoryId}")
                 .then();
     }
 }

@@ -2,7 +2,8 @@
 <suite name="Suite1" verbose="1" thread-count="2" parallel="methods">
     <test name="first tests">
         <classes>
-            <class name="mypackage.tests.component_tests.UserTests"/>
+            <!--<class name="mypackage.tests.component_tests.UserTests"/>-->
+            <class name="mypackage.tests.integration_tests.IntegrationTests"/>
         </classes>
     </test>
 </suite>
