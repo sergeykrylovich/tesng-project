@@ -35,6 +35,10 @@ dependencies {
     //testImplementation 'io.qameta.allure:allure-assertj:2.27.0'
     implementation 'log4j:log4j:1.2.17'
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    testImplementation 'com.zaxxer:HikariCP:5.1.0'
+    testImplementation 'mysql:mysql-connector-java:8.0.29'
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

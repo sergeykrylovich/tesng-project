@@ -1,6 +1,7 @@
 package mypackage.tests.integration_tests;
 
 import io.qameta.allure.Allure;
+import mypackage.database_connection.DataBaseConnectionPool;
 import mypackage.dto.*;
 import mypackage.services.AuthService;
 import mypackage.services.CategoryService;
@@ -12,6 +13,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -85,5 +90,28 @@ public class IntegrationTests {
         logger.info("delete product and category");
         productService.deleteProduct(actualProduct.getId(), accessToken).statusCode(200);
         categoryService.deleteCategory(actualCategory.getId(), accessToken).statusCode(200);
+    }
+
+    @Test
+    public void testDb() throws SQLException {
+        String sql = "select * from product;";
+        try (Connection connection = DataBaseConnectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet res = preparedStatement.executeQuery();)
+        {
+            while (res.next()) {
+                int index = res.getInt("id");
+                String name = res.getString("name");
+                String price = res.getString("price");
+                String productId = res.getString("product_id");
+                String version = res.getString("version");
+                System.out.println(index + " - " + name + " - " + productId + " - " + version);
+            }
+
+            DataBaseConnectionPool.close();
+        }
+
+
+
     }
 }
