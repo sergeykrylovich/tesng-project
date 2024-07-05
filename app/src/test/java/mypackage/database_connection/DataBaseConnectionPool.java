@@ -41,4 +41,14 @@ public class DataBaseConnectionPool {
         }
     }
 
+    public static String getPoolName() {
+       return dataSource.getPoolName();
+    }
+
+    public static Boolean isClosed() {
+        return dataSource.isClosed();
+    }
+
+
+
 }
